@@ -45,17 +45,12 @@ public class Programa {
 			
 			LocalDate agora = LocalDate.now();
 			
-			if (checkIn.isBefore(agora) || checkOut.isBefore(agora)) {
-				System.out.println("Erro na reserva: a data para atualização"
-						+ " precisa ser datas futuras!");
-			} 
-			else if (checkOut.isBefore(checkIn)) {
-				System.out.println("Erro na reserva: a data de check-out "
-						+ "deve ser após a data de check-in!");
+			String erro= reserva.atualizarDatas(checkIn, checkOut);
+			if (erro != null ) {
+				System.out.println(erro);
 			} else {
-				reserva.atualizarDatas(checkIn, checkOut);
 				System.out.println("Reserva: " + reserva);
-			}		
+			}			
 		}
 		
 		sc.close();
